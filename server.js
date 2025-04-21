@@ -27,8 +27,13 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/metrics', require('./routes/metrics'));
 
 // Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Handle SPA routing
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    if (!req.path.startsWith('/api')) {
+        res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    }
 });
 
 const PORT = process.env.PORT || 3000;
