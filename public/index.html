@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoBand+</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2322c55e'/><path d='M35 50 h30 M50 35 v30' stroke='white' stroke-width='8' stroke-linecap='round'/><path d='M40 65 c5,-10 15,-20 25,-25 s15,5 5,15 s-20,15 -30,10' fill='%2322c55e'/></svg>">
+</head>
+<body>
+    <div id="app">
+        <!-- Landing Page -->
+        <div class="page" id="landing-page">
+            <h1>EcoBand+</h1>
+            <p>The Wearable that Measures your Carbon Karma</p>
+            <p class="subtitle">Gamifying sustainable living with activity recognition, air quality, and temperature data</p>
+            <div class="logo">🌱</div>
+            <button onclick="showPage('signup-page')" class="btn">Sign Up</button>
+            <p class="small">Already have an account? <a href="#" onclick="showPage('login-page')">Log In</a></p>
+        </div>
+
+        <!-- Sign Up Page -->
+        <div class="page hidden" id="signup-page">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email address" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+            <p class="small">Already have an account? <a href="#" onclick="showPage('login-page')">Log In</a></p>
+        </div>
+
+        <!-- Login Page -->
+        <div class="page hidden" id="login-page">
+            <h2>Log In</h2>
+            <form id="login-form">
+                <input type="email" name="email" placeholder="Email address" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="btn">Log In</button>
+            </form>
+            <p class="small">Forgot password?</p>
+            <p class="small">Don't have an account? <a href="#" onclick="showPage('signup-page')">Sign Up</a></p>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div class="page hidden" id="dashboard-page">
+            <div class="dashboard-container">
+                <h2>EcoBand+</h2>
+                <div class="score-card">
+                    <h3>Green Score</h3>
+                    <div class="score">82</div>
+                    <p class="streak">🔥 Streak 5</p>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h4>Temperature</h4>
+                        <div class="value" id="temperature">22°C</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Humidity</h4>
+                        <div class="value" id="humidity">55%</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Air Quality</h4>
+                        <div class="value" id="airQuality">Good</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Status</h4>
+                        <div class="value" id="buzzerStatus">Ready</div>
+                    </div>
+                </div>
+                <button id="buzzerBtn" class="find-band-btn" onclick="toggleBuzzer()">Find My Band</button>
+            </div>
+            <nav>
+                <button class="nav-btn active">🏠</button>
+                <button class="nav-btn">📊</button>
+                <button class="nav-btn">💡</button>
+                <button class="nav-btn" onclick="showPage('settings-page')">⚙️</button>
+            </nav>
+        </div>
+
+        <!-- History Page -->
+        <div class="page hidden" id="history-page">
+            <div class="header">
+                <button onclick="showPage('dashboard-page')" class="back-btn">← Back</button>
+                <h2>History</h2>
+            </div>
+            <div class="time-range-selector">
+                <button class="range-btn active" onclick="updateTimeRange(7)">7 Days</button>
+                <button class="range-btn" onclick="updateTimeRange(14)">14 Days</button>
+                <button class="range-btn" onclick="updateTimeRange(30)">1 Month</button>
+            </div>
+            <div class="charts-container">
+                <div class="chart-card">
+                    <h3>Air Quality History</h3>
+                    <canvas id="airQualityChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Temperature History</h3>
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Humidity History</h3>
+                    <canvas id="humidityChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Settings Page -->
+        <div class="page hidden" id="settings-page">
+            <div class="header">
+                <button onclick="showPage('dashboard-page')" class="back-btn">← Back</button>
+                <h2>Settings</h2>
+            </div>
+            <button onclick="logout()" class="btn">Logout</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="app.js"></script>
+</body>
+</html>
