@@ -83,9 +83,9 @@ function logout() {
 }
 
 // ThingSpeak Configuration
-const THINGSPEAK_CHANNEL_ID = '2926407';
-const THINGSPEAK_READ_API_KEY = 'RH570PWHWYRFXTS4';
-const THINGSPEAK_WRITE_API_KEY = 'RFWACHYB24P38NGL';
+const THINGSPEAK_CHANNEL_ID = '2928017';
+const THINGSPEAK_READ_API_KEY = '4VPCWH5REJ3RN21T';
+const THINGSPEAK_WRITE_API_KEY = 'FOWHMD27MS329S9Z';
 const THINGSPEAK_API_URL = 'https://api.thingspeak.com';
 
 async function fetchAndUpdateMetrics() {
